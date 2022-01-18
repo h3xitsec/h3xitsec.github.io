@@ -12,6 +12,9 @@ disass:
 slug: hack-blueprint
 categories:
   - tryhackme
+tags:
+  - windows
+  - cve
 ---
 
 ## Challenge description
