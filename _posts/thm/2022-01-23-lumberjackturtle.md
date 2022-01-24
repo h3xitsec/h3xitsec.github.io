@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Try Hack Me - VulnNet: Lumberjack Turtle'
+title: 'Try Hack Me - Lumberjack Turtle'
 disass:
   - url: /assets/img/thm-lumberjackturtle/lumberjackturtle-1.png
     image_path: /assets/img/thm-lumberjackturtle/lumberjackturtle-1.png
