@@ -9,7 +9,7 @@ disass:
   - url: /assets/img/thm-blueprint/blueprint-2.png
     image_path: /assets/img/thm-blueprint/blueprint-2.png
     title: crackstation
-slug: hack-blueprint
+slug: thm-blueprint
 categories:
   - tryhackme
 tags:

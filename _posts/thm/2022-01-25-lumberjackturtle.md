@@ -10,7 +10,7 @@ disass:
     title: other
 categories:
   - tryhackme
-slug: hack-lumberjack-turtle
+slug: thm-lumberjack-turtle
 tags:
   - linux
   - java
@@ -28,7 +28,7 @@ tags:
 ### Port scanning and service identification
 
 ```
-$ rustscan -a $ip -r 1-65535 -- -A -sC    
+$ rustscan -a $ip -r 1-65535 -- -A -sC
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
