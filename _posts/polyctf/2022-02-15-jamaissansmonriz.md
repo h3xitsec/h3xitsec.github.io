@@ -27,7 +27,7 @@ I continued looking for the "classics" and found the first flag in the good old 
 User-agent: * 
 Disallow: /admin/
 
-FLAG{1_redacted}
+FLAG{1_dur_dur_detre_un_robot}
 ```
 
 # Flag 2
