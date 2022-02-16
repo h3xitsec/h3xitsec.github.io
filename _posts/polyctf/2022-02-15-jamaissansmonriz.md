@@ -30,11 +30,11 @@ Disallow: /admin/
 FLAG{1_dur_dur_detre_un_robot}
 ```
 
-# Flag 2
+# Flag #2
 
 Now that I have flag #1, I continued to look at source code and some other things without finding anything else useful, I went back to this potential LFI.
 
-I started by trying to include robots.txt and it worked. The content of the file showed up in the source :
+I started by trying to include a file that I know it exists and that I have read permission, robots.txt and it worked. The content of the file showed up in the source :
 
 */post.php?postid=robots.txt*
 
@@ -106,7 +106,7 @@ if(isset($_POST["email"]) && isset($_POST["password"])) {
 
 We also have the code that validate the "remember me" cookie and the login validation itself. We know the admin email address and that the password is stored in an environment variable. We'll get back to this later.
 
-# Flag 3
+# Flag #3
 
 Let's go back to the source of login.php. 
 
@@ -222,7 +222,7 @@ When the page is reloaded, we're in the admin dashboard:
 
 ![flag3](/assets/img/polyctf-jamaissansmonriz/admin-flag3.png "flag3")
 
-# Flag 4
+# Flag #4
 
 I already know that the 4th flag is in an environment variable. I must find a way to access those variables.
 
@@ -277,7 +277,7 @@ I went back to my browser and refresh the page to get my shell and the 4th flag 
 
 ![webshell](/assets/img/polyctf-jamaissansmonriz/webshell.png "webshell")
 
-# Flag 5
+# Flag #5
 
 The 4th flag is asking us to become root. Let's do that.
 
